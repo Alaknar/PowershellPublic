@@ -47,3 +47,4 @@ You can also end the log with `-Message "EndLog"` which adds the following line:
 
 Displays the specs of the machine it's run on.
 
+![image](https://user-images.githubusercontent.com/26569304/107425132-e16add00-6b1e-11eb-9921-f7fa3a543744.png)

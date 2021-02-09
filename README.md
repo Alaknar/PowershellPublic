@@ -37,6 +37,7 @@ Write-Log allows for three formatting options for any message.
 ```
 
 <ins>Ending the log</ins>
+
 You can also end the log with `-Message "EndLog"` which adds the following line:
 ```
 "`n`n ==== LOG FILE ENDED on $time ===="

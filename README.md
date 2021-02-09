@@ -48,3 +48,21 @@ You can also end the log with `-Message "EndLog"` which adds the following line:
 Displays the specs of the machine it's run on.
 
 ![image](https://user-images.githubusercontent.com/26569304/107425132-e16add00-6b1e-11eb-9921-f7fa3a543744.png)
+
+## Send-PasswordExpiryEmail
+
+Gets a list of all accounts from a specified OU that are not already disabled and their `PasswordNeverExpires` is set to `$False`.
+
+Filters out two groups - accounts whose passwords will expire in 14 days and those that will expire in 7 or less days.
+
+The first group receives an email once. The second group will receive an email daily.
+
+## Move-Recursively
+
+Recursively moves files of a designated type between locations. I'm pretty sure I found this script online, but no clue where or who from...
+
+`$OrgPath` is the source path.
+
+`$NewPath` is the destination path.
+
+`$FileType` is the file type (e.g. '.mp3'). Include the fullstop.

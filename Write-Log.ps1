@@ -45,7 +45,7 @@ function Write-Log {
     .OUTPUTS
         System.String[]
     .NOTES
-        Created on 2021-02-08 by Andrzej Zabrzeski.
+        Created on 2021-02-08 by Alaknár.
         Version 1.0
     #>
     [CmdletBinding()]

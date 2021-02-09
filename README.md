@@ -42,3 +42,7 @@ You can also end the log with `-Message "EndLog"` which adds the following line:
 ```
 "`n`n ==== LOG FILE ENDED on $time ===="
 ```
+
+## Get-PCSpecs
+
+Displays the specs of the machine it's run on.

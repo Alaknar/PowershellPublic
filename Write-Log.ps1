@@ -17,10 +17,10 @@ function Write-Log {
         "$time"+": "+"$Message" 
 
          - Emphasis
-        "$time"+" === "+"$Message"+" ===" }
+        "$time"+" === "+"$Message"+" ==="
 
          - Header
-        "`n === "+"$Message"+" === "+$time+" ===" }
+        "`n === "+"$Message"+" === "+$time+" ==="
 
         You can also end the log with '-Message "EndLog"' which adds the following line:
         "`n`n ==== LOG FILE ENDED on $time ===="

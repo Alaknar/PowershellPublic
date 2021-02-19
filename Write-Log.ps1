@@ -71,7 +71,7 @@ function Write-Log {
         else {
             Write-Verbose "Creating the log file."
             New-Item -Type File -Path $LogFile -Force | Out-Null
-            Add-Content -Path $LogFile -Value " ==== LOG FILE CREATED on $time ===="
+            Add-Content -Path $LogFile -Value " ==== LOG FILE CREATED on $time ====`n"
         }
     }
     PROCESS{

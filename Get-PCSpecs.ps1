@@ -20,6 +20,7 @@ function Get-PCSpecs {
         Disks           = $Disks
 	Monitors	= $Monitors
     }
+    ""
     "HARDWARE:"
     $computerdeets | Select-Object MoBo,CPU,GPU,RAM | Format-List
     "MONITORS:"

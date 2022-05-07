@@ -18,7 +18,7 @@ function Get-PCSpecs {
         GPU             = $GPU.Name+" | "+[math]::round($GPU.AdapterRAM / 1GB)+"GB | Driver version: "+$GPU.DriverVersion+" (published date: "+$GPU.DriverDate+")"
         RAM             = ([math]::round(($RAM.Sum / 1GB))).ToString()+"GB in "+$RAM.Count+" sticks"
         Disks           = $Disks
-	Monitors	= $Monitors
+	    Monitors	    = $Monitors
     }
     ""
     "HARDWARE:"

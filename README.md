@@ -66,3 +66,23 @@ Recursively moves files of a designated type between locations. I'm pretty sure 
 `$NewPath` is the destination path.
 
 `$FileType` is the file type (e.g. '.mp3'). Include the fullstop.
+
+## Find-UninstallString
+
+Looks through the Uninstall keys in the Registry (both standard and Wow6432Node) and returns all elements that match the provided string.
+
+### Example
+
+```powershell
+> Find-UninstallString git
+
+DisplayName UninstallString                     DisplayVersion
+----------- ---------------                     --------------
+Git         "C:\Program Files\Git\unins000.exe" 2.37.1
+```
+
+## Install-MicroTextEditor
+
+Downloads the latest version of the [Micro Text Editor](https://github.com/zyedidia/micro/blob/master/README.md) to C:\Temp, unpacks the zip and copies `micro.exe` to `$env:WinDir`.
+
+Admin rights needed. The C:\Temp folder must exist prior to running the script.

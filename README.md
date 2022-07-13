@@ -1,6 +1,6 @@
 # PowershellPublic
 
-This is gonna be mostly empty, but this is my repository of functions I feel might be worth sharing.
+Tthis is my repository of functions I feel might be worth sharing.
 
 Please let me know if find stupid things or just feel like something could be done better.
 
@@ -47,7 +47,39 @@ You can also end the log with `-Message "EndLog"` which adds the following line:
 
 Displays the specs of the machine it's run on.
 
-![image](https://user-images.githubusercontent.com/26569304/107425132-e16add00-6b1e-11eb-9921-f7fa3a543744.png)
+### Example
+
+```powershell
+> Get-PCSpecs
+
+HARDWARE:
+
+MoBo : ASUSTeK COMPUTER INC. H97-PRO
+CPU  : CPU0 | Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz
+GPU  : NVIDIA GeForce RTX 2060 | 4GB | Driver version: 30.0.14.9649 (published date: 10/20/2021 02:00:00)
+RAM  : 32GB in 4 sticks
+
+
+MONITORS:
+
+Serial        Manufacturer Name
+------        ------------ ----
+XXXXXX        DEL          DELL U2xxxHM
+XXXXXX        IVM          xx2xxxQ
+
+STORAGE:
+
+DeviceID VolumeName TotalSize FreeSpaceGB
+-------- ---------- --------- -----------
+C:       SYSTEM     249 GB    107 GB
+D:       xxxxxx     233 GB    164 GB
+E:       yyyyyy     224 GB    61 GB
+G:       zzzzzz     682 GB    56 GB
+```
+
+### Note
+
+Might throw errors on laptops as it seems at least some of them have the UserFriendlyName value blank. Will pull all the other data just fine, though.
 
 ## Send-PasswordExpiryEmail
 

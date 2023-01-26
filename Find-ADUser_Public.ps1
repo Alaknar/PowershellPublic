@@ -64,7 +64,7 @@ function Find-ADUser {
         EmailAddress         : John.Doe@Contoso.com (Online)
         AccountLocked        : False
         OfficePhone          : #####
-        msRTCSIP-OptionFlags : ### (Enterprise Voice)
+        msRTCSIP-OptionFlags : 385 (Enterprise Voice)
         Company              : Contoso
         Office               : California
         CanonicalName        : contoso.local/Contoso/Contoso Users/John Doe

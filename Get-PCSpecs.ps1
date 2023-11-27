@@ -24,7 +24,7 @@ function Get-PCSpecs {
     $computerdeets = [pscustomobject]@{
         MoBo     = $MoBo.Manufacturer + " " + $MoBo.Product
         CPU      = $CPU.DeviceID + " | " + $CPU.Name
-        GPU      = $GPU.Name + " | " + [math]::round($GPU.AdapterRAM / 1GB) + "GB | Driver version: " + $GPU.DriverVersion + " (published date: " + $GPU.DriverDate + ")"
+        GPU      = foreach($GPU in $AllGPU){$GPU.Name + " | " + [math]::round($GPU.AdapterRAM / 1GB) + "GB | Driver version: " + $GPU.DriverVersion + " (published date: " + $GPU.DriverDate + ")"}
         RAM      = ([math]::round(($RAM.Sum / 1GB))).ToString() + "GB in " + $RAM.Count + " sticks"
         Disks    = $Disks
         Monitors = $Monitors

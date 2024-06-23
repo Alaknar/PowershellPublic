@@ -1,7 +1,7 @@
 function Get-PCSpecs {
     $MoBo = Get-CimInstance -ClassName Win32_BaseBoard
     $CPU = Get-CimInstance -ClassName Win32_Processor
-    $GPU = Get-CimInstance -ClassName Win32_VideoController
+    $AllGPU = Get-CimInstance -ClassName Win32_VideoController
     $RAM = Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum
     $Disks = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" | Select-Object -Property DeviceID, VolumeName, @{Name = "TotalSize"; Expression = { ([math]::round(($_.Size / 1GB))).ToString() + " GB" } }, @{Name = "FreeSpaceGB"; Expression = { ([math]::round(($_.FreeSpace / 1GB))).ToString() + " GB" } }
     $Monitors = Get-CimInstance -Namespace root\wmi -ClassName wmimonitorid | ForEach-Object {

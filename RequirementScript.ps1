@@ -4,7 +4,7 @@ $appName = "Jabra Direct"
 $logPath = "C:\Temp\log.txt"
 $outputString = "Applicable"
 
-## Helper function
+#region HELPER FUNCTIONS
 function Find-UninstallString {
     [CmdletBinding()]
     param (
@@ -133,6 +133,7 @@ function Write-Log {
         Add-Content -Path $LogFile -Value $LogEntry
     }
 }
+#endregion HELPER FUNCTIONS
 
 $detectedInstallations = Find-UninstallString $appName
 IF($null -ne $detectedInstallations){

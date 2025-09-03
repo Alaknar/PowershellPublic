@@ -1,6 +1,6 @@
 #Requires -Modules Microsoft.Graph.Authentication
 
-Function Get-DeviceManagementScripts() {
+Function Get-MgDeviceManagementScripts() {
     <#
 .SYNOPSIS
 Get all or individual Intune PowerShell Platform Scripts and save them in specified folder.

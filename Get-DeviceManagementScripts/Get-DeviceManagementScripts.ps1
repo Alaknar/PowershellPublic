@@ -1,4 +1,5 @@
 #Requires -Modules Microsoft.Graph.Authentication
+
 Function Get-DeviceManagementScripts() {
     <#
 .SYNOPSIS
@@ -7,7 +8,7 @@ Get all or individual Intune PowerShell Platform Scripts and save them in specif
 .DESCRIPTION
 The Get-DeviceManagementScripts cmdlet downloads all or individual PowerShell scripts from Intune to a specified folder.
 Initial Author: Oliver Kieselbach (oliverkieselbach.com)
-Compatibility with MgGraph: Alaknár (https://github.com/Alaknar)
+Compatibility with MgGraph and error handling: Alaknár (https://github.com/Alaknar)
 The script is provided "AS IS" with no warranties.
  
 .PARAMETER FolderPath
@@ -36,21 +37,24 @@ Get-DeviceManagementScripts -FolderPath C:\temp -FileName myScript.ps1
         [String]$FileName
     )
 
-    IF(-not (Test-Path $FolderPath)){
+    if (-not (Test-Path $FolderPath)) {
+        Write-Warning "Provided path: $FolderPath" -WarningAction Continue
         Write-Warning "Directory doesn't exist. Create (Y/N)? Change path (C)?" -WarningAction Continue
-        $answer = Read-Host
-        while ($answer -notin "y","Y","n","N","c","C") {
-            $answer = Read-Host
+        $answer = (Read-Host).ToUpper()
+        while ($answer -notin "Y", "N", "C") {
+            $answer = (Read-Host).ToUpper()
         }
-        IF($answer -in "y","Y"){
+        if ($answer -eq "Y") {
             New-Item -Path $FolderPath -ItemType Directory -Force
-        }ELSEIF($answer -in "n","N"){
+        }
+        elseif ($answer -eq "N") {
             break
-        }ELSEIF($answer -in "c","C"){
+        }
+        elseif ($answer -eq "C") {
             Write-Host "Provide the new path:" -ForegroundColor Yellow
             $FolderPath = Read-Host
-            while(-not (Test-Path $FolderPath)){
-                "Update path"
+            while (-not (Test-Path $FolderPath)) {
+                Write-Warning "Directory doesn't exist. Try again." -WarningAction Continue
                 $FolderPath = Read-host
             }
         }
@@ -59,18 +63,24 @@ Get-DeviceManagementScripts -FolderPath C:\temp -FileName myScript.ps1
     $graphApiVersion = "Beta"
     $graphUrl = "https://graph.microsoft.com/$graphApiVersion"
 
-    $result = Invoke-MgGraphRequest -Uri "$graphUrl/deviceManagement/deviceManagementScripts" -Method GET
-
-    if ($FileName) {
-        $scriptId = $result.value | Select-Object id, fileName | Where-Object -Property fileName -eq $FileName
-        $script = Invoke-MgGraphRequest -Uri "$graphUrl/deviceManagement/deviceManagementScripts/$($scriptId.id)" -Method GET
-        [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($($script.scriptContent))) | Out-File -Encoding ASCII -FilePath $(Join-Path $FolderPath $($script.fileName))
-    }
-    else {
-        $scriptIds = $result.value | Select-Object id, fileName
-        foreach ($scriptId in $scriptIds) {
+    try {
+        $result = Invoke-MgGraphRequest -Uri "$graphUrl/deviceManagement/deviceManagementScripts" -Method GET
+        
+        if ($FileName) {
+            $scriptId = $result.value | Select-Object id, fileName | Where-Object -Property fileName -eq $FileName
             $script = Invoke-MgGraphRequest -Uri "$graphUrl/deviceManagement/deviceManagementScripts/$($scriptId.id)" -Method GET
             [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($($script.scriptContent))) | Out-File -Encoding ASCII -FilePath $(Join-Path $FolderPath $($script.fileName))
         }
+        else {
+            $scriptIds = $result.value | Select-Object id, fileName
+            foreach ($scriptId in $scriptIds) {
+                $script = Invoke-MgGraphRequest -Uri "$graphUrl/deviceManagement/deviceManagementScripts/$($scriptId.id)" -Method GET
+                [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($($script.scriptContent))) | Out-File -Encoding ASCII -FilePath $(Join-Path $FolderPath $($script.fileName))
+            }
+        }
     }
+    catch {
+        throw $_
+    }
+
 }

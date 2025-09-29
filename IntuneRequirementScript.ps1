@@ -1,6 +1,7 @@
 <#===================================
 Requirement Script for Krita
-
+    Original by https://www.reddit.com/user/Constant-Position601/
+    Link to original: https://www.reddit.com/r/Intune/comments/1ldo4x8/comment/nfyeqjx/
 
 ===================================#>
 $ErrorActionPreference = "silentlycontinue"

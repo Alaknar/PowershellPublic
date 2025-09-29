@@ -5,12 +5,12 @@ Requirement Script for Krita
 ===================================#>
 $ErrorActionPreference = "silentlycontinue"
 #-----------------------
-$DisplayName_StartsWith = "XXXX"
+$DisplayNameStartsWith = "Krita"
 #---------------------
 $InstalledVersion = $Null
-$Expected_Version = [version]"XXXX"
+$ExpectedVersion = [version]"5.2.13.0"
 #---------------------
-$Upgrade_Needed = 0
+$UpgradeNeeded = 0
 #---------------------
 
 
@@ -24,7 +24,7 @@ If ($Null -ne $SW) {
 
         if ($Null -eq $App.DisplayName) { Continue }
 
-        if ($App.DisplayName.StartsWith($DisplayName_StartsWith)) { 
+        if ($App.DisplayName.StartsWith($DisplayNameStartsWith)) { 
             <#
 #----------------------------
 Write-Host ""
@@ -43,7 +43,7 @@ Write-Host ""
 }
 
 #----------------------------------
-If ($InstalledVersion -ge $Expected_Version) {
+If ($InstalledVersion -ge $ExpectedVersion) {
     Write-Host "App is installed"
     Exit 1
 }
@@ -51,13 +51,13 @@ ElseIf ($Null -eq $InstalledVersion) {
     Write-Host "App not installed"
     Exit 1
 }
-ElseIf ($InstalledVersion -lt $Expected_Version) {
-    $Upgrade_Needed++
+ElseIf ($InstalledVersion -lt $ExpectedVersion) {
+    $UpgradeNeeded++
 }
 #----------------------------------
 
 #----------------------------------
-if ($Upgrade_Needed -ne 0) {
+if ($UpgradeNeeded -ne 0) {
     Write-Host "Upgrade needed"
     Exit 0
 }

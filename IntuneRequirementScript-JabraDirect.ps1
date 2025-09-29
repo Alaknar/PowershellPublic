@@ -6,10 +6,10 @@ Requirement Script for Krita
 ===================================#>
 $ErrorActionPreference = "silentlycontinue"
 #-----------------------
-$DisplayNameStartsWith = "Krita"
+$DisplayNameStartsWith = "Jabra Direct"
 #---------------------
 $InstalledVersion = $Null
-$ExpectedVersion = [version]"5.2.13.0"
+$ExpectedVersion = [version]"6.23.16101"
 #---------------------
 $UpgradeNeeded = 0
 #---------------------
